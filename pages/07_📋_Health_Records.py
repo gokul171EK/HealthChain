@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta, date
 from utils.data_manager import DataManager
+from utils.styling import add_app_styling
 
 # Initialize data manager
 @st.cache_resource
@@ -19,6 +20,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("📋 Health Records Management")
     st.markdown("### Secure Digital Storage of Your Medical Information")
     

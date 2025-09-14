@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 from utils.data_manager import DataManager
+from utils.styling import add_app_styling
 
 # Initialize data manager
 @st.cache_resource
@@ -17,6 +18,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("📚 Health Education Center")
     st.markdown("### Learn About Health, Wellness, and Disease Prevention")
     

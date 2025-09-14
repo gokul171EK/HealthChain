@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime, timedelta, date, time
 from utils.data_manager import DataManager
+from utils.styling import add_app_styling
 
 # Initialize data manager
 @st.cache_resource
@@ -18,6 +19,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("👨‍⚕️ Virtual Consultations")
     st.markdown("### Connect with Healthcare Professionals from Anywhere")
     

@@ -4,6 +4,7 @@ import folium
 from streamlit_folium import folium_static
 from datetime import datetime
 from utils.data_manager import DataManager
+from utils.styling import add_app_styling
 
 # Initialize data manager
 @st.cache_resource
@@ -19,6 +20,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("🚨 Emergency Assistance")
     st.markdown("### Instant Access to Emergency Services and Support")
     
@@ -52,16 +54,22 @@ def main():
     
     with tab5:
         show_medical_alert()
-
+        
 def show_emergency_contacts():
     """Display emergency contact numbers"""
     st.header("📞 Emergency Contact Numbers")
-    
+
+    st.markdown('<div class="header-row">', unsafe_allow_html=True)
     col1, col2 = st.columns(2)
-    
     with col1:
         st.subheader("🚨 National Emergency Numbers")
-        
+    with col2:
+        st.subheader("🏥 Specialized Emergency Services")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
         national_contacts = [
             {"service": "🚑 Medical Emergency", "number": "102", "description": "Ambulance and medical emergencies"},
             {"service": "👮 Police Emergency", "number": "100", "description": "Crime, accidents, public safety"},
@@ -70,27 +78,22 @@ def show_emergency_contacts():
             {"service": "🩸 Blood Helpline", "number": "1910", "description": "Blood bank and donation assistance"},
             {"service": "☠️ Poison Control", "number": "1066", "description": "Poisoning and overdose emergencies"}
         ]
-        
-        for contact in national_contacts:
+
+        for i, contact in enumerate(national_contacts):
+            st.markdown('<div class="contact-row">', unsafe_allow_html=True)
             with st.container():
-                col_icon, col_details, col_call = st.columns([1, 3, 1])
-                
+                col_icon, col_details, col_call = st.columns([1, 4, 2])
                 with col_icon:
                     st.markdown(f"### {contact['service'].split()[0]}")
-                
                 with col_details:
                     st.markdown(f"**{contact['service']}**")
                     st.write(contact['description'])
-                
                 with col_call:
-                    if st.button(f"📞 {contact['number']}", key=f"call_{contact['number']}", use_container_width=True):
+                    if st.button(f"📞 {contact['number']}", key=f"call_{i}", use_container_width=True):
                         st.success(f"Calling {contact['number']}...")
-                
-                st.markdown("---")
-    
+            st.markdown('</div><hr class="contact-divider">', unsafe_allow_html=True)
+
     with col2:
-        st.subheader("🏥 Specialized Emergency Services")
-        
         specialized_contacts = [
             {"service": "👶 Child Helpline", "number": "1098", "description": "Child abuse and emergency"},
             {"service": "👩 Women Helpline", "number": "1091", "description": "Women in distress"},
@@ -99,41 +102,33 @@ def show_emergency_contacts():
             {"service": "🚗 Road Accident", "number": "1073", "description": "Traffic accidents and rescue"},
             {"service": "⛽ Gas Leak", "number": "1906", "description": "Gas leakage emergency"}
         ]
-        
-        for contact in specialized_contacts:
+
+        for i, contact in enumerate(specialized_contacts):
+            st.markdown('<div class="contact-row">', unsafe_allow_html=True)
             with st.container():
-                col_icon, col_details, col_call = st.columns([1, 3, 1])
-                
+                col_icon, col_details, col_call = st.columns([1, 4, 2])
                 with col_icon:
                     st.markdown(f"### {contact['service'].split()[0]}")
-                
                 with col_details:
                     st.markdown(f"**{contact['service']}**")
                     st.write(contact['description'])
-                
                 with col_call:
-                    if st.button(f"📞 {contact['number']}", key=f"call_spec_{contact['number']}", use_container_width=True):
+                    if st.button(f"📞 {contact['number']}", key=f"call_spec_{i}", use_container_width=True):
                         st.success(f"Calling {contact['number']}...")
-                
-                st.markdown("---")
-    
-    # Quick dial section
+            st.markdown('</div><hr class="contact-divider">', unsafe_allow_html=True)
+
+    # Quick dial section at the bottom for better flow
     st.subheader("⚡ Quick Emergency Dial")
-    
     col_quick1, col_quick2, col_quick3, col_quick4 = st.columns(4)
-    
     with col_quick1:
         if st.button("🚑 MEDICAL\n102", key="quick_medical", use_container_width=True):
             st.error("🚑 Calling Medical Emergency: 102")
-    
     with col_quick2:
         if st.button("👮 POLICE\n100", key="quick_police", use_container_width=True):
             st.error("👮 Calling Police: 100")
-    
     with col_quick3:
         if st.button("🔥 FIRE\n101", key="quick_fire", use_container_width=True):
             st.error("🔥 Calling Fire Emergency: 101")
-    
     with col_quick4:
         if st.button("🚨 ALL\n112", key="quick_all", use_container_width=True):
             st.error("🚨 Calling Unified Emergency: 112")

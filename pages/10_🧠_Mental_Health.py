@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta, date, time
 from utils.data_manager import DataManager
 from utils.ai_simulator import AISimulator
+from utils.styling import add_app_styling
 
 # Initialize components
 @st.cache_resource
@@ -20,6 +21,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("🧠 Mental Health & Wellness Support")
     st.markdown("### Your Mental Health Matters - Find Support and Resources")
     
@@ -893,8 +895,8 @@ def show_crisis_support():
             {"action": "🏥 Find ER", "number": "102"}
         ]
         
-        for action in crisis_actions:
-            if st.button(action["action"], key=f"crisis_{action['number']}", use_container_width=True):
+        for i, action in enumerate(crisis_actions):
+            if st.button(action["action"], key=f"crisis_{i}", use_container_width=True):
                 st.error(f"Calling {action['number']}")
         
         st.subheader("🤝 How to Help Someone in Crisis")

@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import folium
 from streamlit_folium import folium_static
 from utils.data_manager import DataManager
+from utils.styling import add_app_styling
 
 # Initialize data manager
 @st.cache_resource
@@ -20,6 +21,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("🩸 Blood Donation Center")
     st.markdown("### Save Lives Through Blood Donation")
     

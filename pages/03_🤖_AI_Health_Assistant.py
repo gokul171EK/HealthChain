@@ -5,12 +5,13 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from utils.data_manager import DataManager
 from utils.ai_simulator import AISimulator
-from utils.translator import MedicalTranslator
+from utils.translator import Translator
+from utils.styling import add_app_styling
 
 # Initialize components
 @st.cache_resource
 def init_components():
-    return DataManager(), AISimulator(), MedicalTranslator()
+    return DataManager(), AISimulator(), Translator()
 
 data_manager, ai_simulator, translator = init_components()
 
@@ -21,6 +22,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("🤖 AI Health Assistant")
     st.markdown("### Your Personal AI-Powered Health Companion")
     

@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, date
 import numpy as np
 from utils.data_manager import DataManager
 from utils.ai_simulator import AISimulator
+from utils.styling import add_app_styling
 
 # Initialize components
 @st.cache_resource
@@ -21,6 +22,7 @@ st.set_page_config(
 )
 
 def main():
+    add_app_styling()
     st.title("💪 Fitness & Wellness Tracker")
     st.markdown("### Monitor Your Physical Health and Achieve Fitness Goals")
     
