@@ -22,6 +22,12 @@ st.set_page_config(
 
 def main():
     add_app_styling()
+
+    # Make sure this session state check is at the top of the function
+    if 'theme' not in st.session_state:
+      st.session_state.theme = "Light"
+
+    add_app_styling(theme=st.session_state.theme)
     st.title("🧠 Mental Health & Wellness Support")
     st.markdown("### Your Mental Health Matters - Find Support and Resources")
     

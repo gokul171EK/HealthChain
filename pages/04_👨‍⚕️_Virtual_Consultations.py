@@ -20,6 +20,12 @@ st.set_page_config(
 
 def main():
     add_app_styling()
+
+    # Make sure this session state check is at the top of the function
+    if 'theme' not in st.session_state:
+      st.session_state.theme = "Light"
+
+    add_app_styling(theme=st.session_state.theme)
     st.title("👨‍⚕️ Virtual Consultations")
     st.markdown("### Connect with Healthcare Professionals from Anywhere")
     
@@ -673,7 +679,8 @@ def show_active_sessions():
     
     if active_sessions:
         for session in active_sessions:
-            show_active_session_interface(session)
+            # TODO: Implement the active session interface
+            st.info(f"Active session with Dr. {session.get('doctor_name', 'Unknown')}")
     else:
         st.info("💬 No active consultation sessions")
         
