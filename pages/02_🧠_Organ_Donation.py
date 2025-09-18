@@ -14,7 +14,7 @@ data_manager = init_data_manager()
 
 st.set_page_config(
     page_title="Organ Donation - HEALTHTECH",
-    page_icon="🫀",
+    page_icon="🧠",
     layout="wide"
 )
 
@@ -26,7 +26,7 @@ def main():
       st.session_state.theme = "Light"
 
     add_app_styling(theme=st.session_state.theme)
-    st.title("🫀 Organ Donation Center")
+    st.title("🧠 Organ Donation Center")
     st.markdown("### Give the Gift of Life Through Organ Donation")
     
     # Check if user is logged in
